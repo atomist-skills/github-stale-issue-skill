@@ -1,6 +1,6 @@
-# `@atomist/github-issue-stale-skill`
+# `@atomist/github-stale-issue-skill`
 
-This page details all runtime dependencies of `@atomist/github-issue-stale-skill`.
+This page details all runtime dependencies of `@atomist/github-stale-issue-skill`.
 
 ## Licenses
 
