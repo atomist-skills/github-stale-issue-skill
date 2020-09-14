@@ -90,6 +90,9 @@ async function markIssues(
 	};
 
 	const issues = (await api.search.issuesAndPullRequests(params)).data.items;
+	if (issues.length === 0) {
+		await ctx.audit.log(`No stale issues in ${owner}/${name}`);
+	}
 	for (const issue of issues) {
 		await ctx.audit.log(
 			`Marking issue ${owner}/${name}#${issue.number} as stale`,
@@ -143,10 +146,13 @@ async function closeIssues(
 		per_page: 50,
 	};
 
-	const issues = (await api.search.issuesAndPullRequests(params)).data.items;
-	for (const issue of issues.filter(
-		i => i.state !== "closed" && !(i as any).locked,
-	)) {
+	const issues = (
+		await api.search.issuesAndPullRequests(params)
+	).data.items.filter(i => i.state !== "closed" && !(i as any).locked);
+	if (issues.length === 0) {
+		await ctx.audit.log(`No issues to close in ${owner}/${name}`);
+	}
+	for (const issue of issues) {
 		await ctx.audit.log(
 			`Closing stale issue ${owner}/${name}#${issue.number}`,
 		);
