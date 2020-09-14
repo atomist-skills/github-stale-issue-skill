@@ -27,7 +27,7 @@ import { IssueConfiguration } from "./lib/configuration";
 
 export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 	namespace: "atomist",
-	displayName: "Auto-Close Issues",
+	displayName: "Auto-Close Stale Issues",
 	author: "Atomist",
 	categories: [Category.ProjectManagement],
 	license: "Apache-2.0",
@@ -48,6 +48,7 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 			displayName: "Stale label",
 			description: "Label to use when marking as stale",
 			defaultValue: "wontfix",
+			placeHolder: "wontfix",
 			required: true,
 		},
 		daysUntilStale: {
