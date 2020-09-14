@@ -50,28 +50,29 @@ export const handler: EventHandler<
 		repositories: Record<string, { processed: number }>;
 	}>(ctx.configuration?.[0]?.name, ctx, { repositories: {} });
 
+	const processedRepos = repos.Repo.filter(r =>
+		repository.matchesFilter(
+			r.id,
+			r.org.id,
+			ctx.configuration?.[0]?.name,
+			"repos",
+			ctx,
+		),
+	).map(r => {
+		const slug = `${r.owner}/${r.name}`;
+		if (repositoryState?.repositories?.[slug]) {
+			return {
+				slug,
+				repo: r,
+				processed: repositoryState.repositories[slug].processed,
+			};
+		} else {
+			return { slug, repo: r, processed: 0 };
+		}
+	});
 	const filteredRepos = _.orderBy(
-		repos.Repo.filter(r =>
-			repository.matchesFilter(
-				r.id,
-				r.org.id,
-				ctx.configuration?.[0]?.name,
-				"repos",
-				ctx,
-			),
-		).map(r => {
-			const slug = `${r.owner}/${r.name}`;
-			if (repositoryState?.repositories?.[slug]) {
-				return {
-					slug,
-					repo: r,
-					processed: repositoryState.repositories[slug].processed,
-				};
-			} else {
-				return { slug, repo: r, processed: 0 };
-			}
-		}),
-		["slug", "processed"],
+		processedRepos,
+		["processed", "slug"],
 		["asc", "asc"],
 	);
 	for (const repoEntry of filteredRepos.slice(0, 15)) {
