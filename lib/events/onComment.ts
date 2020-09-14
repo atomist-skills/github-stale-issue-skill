@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { EventHandler, subscription } from "@atomist/skill";
+import { EventHandler, subscription, status } from "@atomist/skill";
 import { IssueConfiguration } from "../configuration";
 import { unmarkIssue } from "../unmark";
 
@@ -30,5 +30,12 @@ export const handler: EventHandler<
 	const repo = issue?.pullRequest?.repo?.name || issue?.issue?.repo?.name;
 	const issueNumber = issue?.pullRequest?.number || issue?.issue?.number;
 	const labels = issue?.pullRequest?.labels || issue?.issue?.labels || [];
+	if (issue.by.login === "atomist[bot]") {
+		return status
+			.success(
+				`Not removing stale label from ${owner}/${repo}#${issue} based on bot activity`,
+			)
+			.hidden();
+	}
 	return unmarkIssue(ctx, owner, repo, apiUrl, issueNumber, labels);
 };
