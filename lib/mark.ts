@@ -44,11 +44,12 @@ export async function processRepository(
 		repository.gitHub({ owner: repo.owner, repo: repo.name, credential }),
 	);
 	await ensureStaleLabelExists(repo, cfg, api);
-	await markIssues(repo, cfg, api);
-	await closeIssues(repo, cfg, api);
+	await markIssues(ctx, repo, cfg, api);
+	await closeIssues(ctx, repo, cfg, api);
 }
 
 async function markIssues(
+	ctx: EventContext<any, IssueConfiguration>,
 	repo: RepositoriesQuery["Repo"][0],
 	cfg: IssueConfiguration,
 	api: Octokit,
@@ -90,6 +91,9 @@ async function markIssues(
 
 	const issues = (await api.search.issuesAndPullRequests(params)).data.items;
 	for (const issue of issues) {
+		await ctx.audit.log(
+			`Marking issue ${owner}/${name}#${issue.number} as stale`,
+		);
 		if (markComment) {
 			await api.issues.createComment({
 				owner,
@@ -108,6 +112,7 @@ async function markIssues(
 }
 
 async function closeIssues(
+	ctx: EventContext<any, IssueConfiguration>,
 	repo: RepositoriesQuery["Repo"][0],
 	cfg: IssueConfiguration,
 	api: Octokit,
@@ -142,6 +147,9 @@ async function closeIssues(
 	for (const issue of issues.filter(
 		i => i.state !== "closed" && !(i as any).locked,
 	)) {
+		await ctx.audit.log(
+			`Closing stale issue ${owner}/${name}#${issue.number}`,
+		);
 		if (closeComment) {
 			await api.issues.createComment({
 				owner,
