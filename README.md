@@ -1,4 +1,4 @@
-# `atomist/github-issue-stale-skill`
+# `atomist/github-stale-issue-skill`
 
 <!---atomist-skill-description:start--->
 
