@@ -52,7 +52,25 @@ export async function unmarkIssue(
 			apiUrl,
 		}),
 	);
+
 	const api = github.api(repository.gitHub({ owner, repo, credential }));
+	const lastEvent = (
+		await api.issues.listEvents({
+			owner,
+			repo,
+			issue_number: issue,
+			per_page: 250,
+		})
+	).data.reverse()[0];
+
+	if (lastEvent.actor.type === "Bot") {
+		return status
+			.success(
+				`Not removing stale label from ${owner}/${repo}#${issue} based on bot activity`,
+			)
+			.hidden();
+	}
+
 	if (unmarkComment) {
 		await api.issues.createComment({
 			owner,
