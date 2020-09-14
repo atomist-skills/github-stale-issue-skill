@@ -17,6 +17,7 @@
 import {
 	EventContext,
 	github,
+	handleError,
 	HandlerStatus,
 	repository,
 	secret,
@@ -79,12 +80,14 @@ export async function unmarkIssue(
 			body: unmarkComment,
 		});
 	}
-	await api.issues.removeLabel({
-		owner,
-		repo,
-		issue_number: issue,
-		name: staleLabel,
-	});
+	await handleError(async () =>
+		api.issues.removeLabel({
+			owner,
+			repo,
+			issue_number: issue,
+			name: staleLabel,
+		}),
+	);
 
 	return status.success(
 		`Successfully removed stale label from ${owner}/${repo}#${issue}`,
