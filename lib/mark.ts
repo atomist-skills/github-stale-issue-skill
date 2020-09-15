@@ -192,7 +192,7 @@ async function ensureStaleLabelExists(
 			owner,
 			repo: name,
 			name: staleLabel,
-			color: "ee7318",
+			color: "f9d0c4",
 			description: "Mark issue or pull request as stale",
 		});
 	}
