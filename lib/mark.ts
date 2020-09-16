@@ -24,6 +24,7 @@ import {
 import { Octokit } from "@octokit/rest";
 import { IssueConfiguration } from "./configuration";
 import { RepositoriesQuery } from "./typings/types";
+import { replacePlaceholders } from "./util";
 
 export async function processRepository(
 	repo: RepositoriesQuery["Repo"][0],
@@ -102,7 +103,11 @@ async function markIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: markComment,
+				body: replacePlaceholders(
+					markComment,
+					issue.pull_request ? "pull request" : "issue",
+					staleLabel,
+				),
 			});
 		}
 		await api.issues.addLabels({
@@ -161,7 +166,11 @@ async function closeIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: closeComment,
+				body: replacePlaceholders(
+					closeComment,
+					issue.pull_request ? "pull request" : "issue",
+					staleLabel,
+				),
 			});
 		}
 		await api.issues.update({

@@ -24,13 +24,14 @@ import {
 	status,
 } from "@atomist/skill";
 import { DefaultIssueConfiguration, IssueConfiguration } from "./configuration";
+import { replacePlaceholders } from "./util";
 
 export async function unmarkIssue(
 	ctx: EventContext<any, IssueConfiguration>,
 	owner: string,
 	repo: string,
 	apiUrl: string,
-	issue: number,
+	issueNumber: number,
 	labels: Array<{ name?: string }>,
 ): Promise<HandlerStatus> {
 	const cfg = {
@@ -42,7 +43,9 @@ export async function unmarkIssue(
 
 	if (!labels.some(l => l.name === staleLabel)) {
 		return status
-			.success(`Not removing stale label from ${owner}/${repo}#${issue}`)
+			.success(
+				`Not removing stale label from ${owner}/${repo}#${issueNumber}`,
+			)
 			.hidden();
 	}
 
@@ -59,7 +62,7 @@ export async function unmarkIssue(
 		await api.issues.listEvents({
 			owner,
 			repo,
-			issue_number: issue,
+			issue_number: issueNumber,
 			per_page: 250,
 		})
 	).data.reverse()[0];
@@ -67,24 +70,36 @@ export async function unmarkIssue(
 	if (lastEvent.actor.type === "Bot") {
 		return status
 			.success(
-				`Not removing stale label from ${owner}/${repo}#${issue} based on bot activity`,
+				`Not removing stale label from ${owner}/${repo}#${issueNumber} based on bot activity`,
 			)
 			.hidden();
 	}
+
+	const issue = (
+		await api.issues.get({
+			owner,
+			repo,
+			issue_number: issueNumber,
+		})
+	).data;
 
 	if (unmarkComment) {
 		await api.issues.createComment({
 			owner,
 			repo,
-			issue_number: issue,
-			body: unmarkComment,
+			issue_number: issueNumber,
+			body: replacePlaceholders(
+				unmarkComment,
+				issue.pull_request ? "pull request" : "issue",
+				staleLabel,
+			),
 		});
 	}
 	await handleError(async () =>
 		api.issues.removeLabel({
 			owner,
 			repo,
-			issue_number: issue,
+			issue_number: issueNumber,
 			name: staleLabel,
 		}),
 	);

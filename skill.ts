@@ -81,9 +81,9 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 			type: ParameterType.String,
 			displayName: "Stale comment",
 			description:
-				"Comment to post when marking as stale. Leave empty to disable commenting.",
+				"Comment to post when marking as stale. Leave empty to disable commenting. Optionally use $type (issue or pull request) and $label (name of stale label) in comment.",
 			placeHolder:
-				"Thanks for your contribution!\n\nThis issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs.",
+				"Thanks for your contribution!\n\nThis $type has been automatically marked with $label because it has not had recent activity. It will be closed if no further activity occurs.",
 			lineStyle: LineStyle.Multiple,
 			required: false,
 		},
@@ -91,7 +91,7 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 			type: ParameterType.String,
 			displayName: "Un-stale comment",
 			description:
-				"Comment to post when removing the stale label. Leave empty to disable commenting.",
+				"Comment to post when removing the stale label. Leave empty to disable commenting. Optionally use $type (issue or pull request) and $label (name of stale label) in comment.",
 			lineStyle: LineStyle.Multiple,
 			required: false,
 		},
@@ -99,7 +99,7 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 			type: ParameterType.String,
 			displayName: "Close comment",
 			description:
-				"Comment to post when closing a stale issue or pull request. Leave empty to disable commenting.",
+				"Comment to post when closing a stale issue or pull request. Leave empty to disable commenting. Optionally use $type (issue or pull request) and $label (name of stale label) in comment.",
 			lineStyle: LineStyle.Multiple,
 			required: false,
 		},
