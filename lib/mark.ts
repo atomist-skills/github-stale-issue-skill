@@ -63,6 +63,8 @@ async function markIssues(
 	const exemptProjects = cfg.exemptProjects;
 	const exemptMilestones = cfg.exemptMilestones;
 	const exemptAssignees = cfg.exemptAssignees;
+	const daysUntilClose = cfg.daysUntilClose;
+	const daysUntilStale = cfg.daysUntilStale;
 	const only = cfg.only;
 	const labels = [staleLabel, ...exemptLabels];
 	const queryParts = labels.map(label => `-label:"${label}"`);
@@ -76,8 +78,7 @@ async function markIssues(
 
 	let query = queryParts.join(" ");
 
-	const days = cfg.daysUntilStale;
-	const timestamp = threshold(days)
+	const timestamp = threshold(daysUntilStale)
 		.toISOString()
 		.replace(/\.\d{3}\w$/, "");
 
@@ -103,11 +104,12 @@ async function markIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: replacePlaceholders(
-					markComment,
-					issue.pull_request ? "pull request" : "issue",
-					staleLabel,
-				),
+				body: replacePlaceholders(markComment, {
+					type: issue.pull_request ? "pull request" : "issue",
+					label: staleLabel,
+					daysUntilStale,
+					daysUntilClose,
+				}),
 			});
 		}
 		await api.issues.addLabels({
@@ -129,6 +131,9 @@ async function closeIssues(
 	const staleLabel = cfg.staleLabel;
 	const closeComment = cfg.closeComment;
 	const only = cfg.only;
+	const daysUntilStale = cfg.daysUntilStale;
+	const daysUntilClose = cfg.daysUntilClose;
+
 	let query = `label:"${staleLabel}" ${
 		only === "issues" ? "is:issues" : only === "pulls" ? "is:pr" : ""
 	}`;
@@ -166,11 +171,12 @@ async function closeIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: replacePlaceholders(
-					closeComment,
-					issue.pull_request ? "pull request" : "issue",
-					staleLabel,
-				),
+				body: replacePlaceholders(closeComment, {
+					type: issue.pull_request ? "pull request" : "issue",
+					label: staleLabel,
+					daysUntilStale,
+					daysUntilClose,
+				}),
 			});
 		}
 		await api.issues.update({

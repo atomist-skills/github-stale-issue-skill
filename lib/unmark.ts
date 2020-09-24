@@ -40,6 +40,8 @@ export async function unmarkIssue(
 	};
 	const unmarkComment = cfg.unmarkComment;
 	const staleLabel = cfg.staleLabel;
+	const daysUntilStale = cfg.daysUntilStale;
+	const daysUntilClose = cfg.daysUntilClose;
 
 	if (!labels.some(l => l.name === staleLabel)) {
 		return status
@@ -88,11 +90,12 @@ export async function unmarkIssue(
 			owner,
 			repo,
 			issue_number: issueNumber,
-			body: replacePlaceholders(
-				unmarkComment,
-				issue.pull_request ? "pull request" : "issue",
-				staleLabel,
-			),
+			body: replacePlaceholders(unmarkComment, {
+				type: issue.pull_request ? "pull request" : "issue",
+				label: staleLabel,
+				daysUntilStale,
+				daysUntilClose,
+			}),
 		});
 	}
 	await handleError(async () =>

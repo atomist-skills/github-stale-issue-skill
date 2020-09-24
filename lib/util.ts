@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+import * as _ from "lodash";
+
 export function replacePlaceholders(
 	text: string,
-	type: string,
-	label: string,
+	values: Record<string, any>,
 ): string {
-	return text.split("$type").join(type).split("$label").join(label);
+	let replacedText = text;
+	_.forEach(
+		values,
+		(v, k) =>
+			(replacedText = replacedText.split(`$${k}`).join(v.toString())),
+	);
+	return replacedText;
 }
