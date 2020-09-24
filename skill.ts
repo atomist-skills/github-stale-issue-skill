@@ -83,7 +83,7 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 			description:
 				"Comment to post when marking as stale. Leave empty to disable commenting. Optionally use $type (issue or pull request), $label (name of stale label), $daysUntilStale and $daysUntilClose in comment.",
 			placeHolder:
-				"Thanks for your contribution!\n\nThis $type has been automatically marked with $label because it has not had recent activity. It will be closed if no further activity occurs.",
+				"Thanks for your contribution!\n\nThis $type has been automatically marked with $label because it has not had any activity in last $daysUntilStale days. It will be closed in $daysUntilClose days if no further activity occurs.",
 			lineStyle: LineStyle.Multiple,
 			required: false,
 		},
