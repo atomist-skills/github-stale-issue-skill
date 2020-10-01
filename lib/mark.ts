@@ -20,6 +20,7 @@ import {
 	repository,
 	secret,
 	subscription,
+	log,
 } from "@atomist/skill";
 import { Octokit } from "@octokit/rest";
 import { IssueConfiguration } from "./configuration";
@@ -92,6 +93,7 @@ async function markIssues(
 	};
 
 	const issues = (await api.search.issuesAndPullRequests(params)).data.items;
+	log.debug(`Running GitHub issue query: ${query}`);
 	if (issues.length === 0) {
 		await ctx.audit.log(`No stale issues in ${owner}/${name}`);
 	}
