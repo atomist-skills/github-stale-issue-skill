@@ -12,8 +12,6 @@ Mark and close stale issues and pull requests
 
 # What it's useful for
 
-
-
 # How it works
 
 <!---atomist-skill-readme:end--->
