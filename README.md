@@ -10,7 +10,11 @@ Mark and close stale issues and pull requests
 
 <!---atomist-skill-readme:start--->
 
-tba
+# What it's useful for
+
+
+
+# How it works
 
 <!---atomist-skill-readme:end--->
 
