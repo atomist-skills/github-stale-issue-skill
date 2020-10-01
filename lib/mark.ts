@@ -92,7 +92,9 @@ async function markIssues(
 		per_page: 50,
 	};
 
-	const issues = (await api.search.issuesAndPullRequests(params)).data.items;
+	const issues = (
+		await api.search.issuesAndPullRequests(params)
+	).data.items.filter(i => i.state !== "closed" && !(i as any).locked);
 	log.debug(`Running GitHub issue query: ${query}`);
 	if (issues.length === 0) {
 		await ctx.audit.log(`No stale issues in ${owner}/${name}`);
@@ -161,6 +163,7 @@ async function closeIssues(
 	const issues = (
 		await api.search.issuesAndPullRequests(params)
 	).data.items.filter(i => i.state !== "closed" && !(i as any).locked);
+	log.debug(`Running GitHub issue query: ${query}`);
 	if (issues.length === 0) {
 		await ctx.audit.log(`No issues to close in ${owner}/${name}`);
 	}
