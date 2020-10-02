@@ -85,17 +85,43 @@ export async function unmarkIssue(
 		})
 	).data;
 
+	const comments = (
+		await api.issues.listComments({
+			owner,
+			repo,
+			issue_number: issueNumber,
+			per_page: 100,
+		})
+	).data;
+	const staleComment = comments.find(c =>
+		c.body.includes(
+			`[${ctx.skill.namespace}-${ctx.skill.name}-comment:stale]`,
+		),
+	);
+	if (staleComment) {
+		await handleError(async () =>
+			api.issues.deleteComment({
+				owner,
+				repo,
+				comment_id: staleComment.id,
+			}),
+		);
+	}
+
 	if (unmarkComment) {
 		await api.issues.createComment({
 			owner,
 			repo,
 			issue_number: issueNumber,
-			body: replacePlaceholders(unmarkComment, {
+			body: `${replacePlaceholders(unmarkComment, {
 				type: issue.pull_request ? "pull request" : "issue",
 				label: staleLabel,
 				daysUntilStale,
 				daysUntilClose,
-			}),
+			})}\n${github.formatMarkers(
+				ctx,
+				`${ctx.skill.namespace}-${ctx.skill.name}-comment:close`,
+			)}`,
 		});
 	}
 	await handleError(async () =>

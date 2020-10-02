@@ -108,12 +108,15 @@ async function markIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: replacePlaceholders(markComment, {
+				body: `${replacePlaceholders(markComment, {
 					type: issue.pull_request ? "pull request" : "issue",
 					label: staleLabel,
 					daysUntilStale,
 					daysUntilClose,
-				}),
+				})}\n${github.formatMarkers(
+					ctx,
+					`${ctx.skill.namespace}-${ctx.skill.name}-type:stale`,
+				)}`,
 			});
 		}
 		await api.issues.addLabels({
@@ -176,12 +179,15 @@ async function closeIssues(
 				owner,
 				repo: name,
 				issue_number: issue.number,
-				body: replacePlaceholders(closeComment, {
+				body: `${replacePlaceholders(closeComment, {
 					type: issue.pull_request ? "pull request" : "issue",
 					label: staleLabel,
 					daysUntilStale,
 					daysUntilClose,
-				}),
+				})}\n${github.formatMarkers(
+					ctx,
+					`${ctx.skill.namespace}-${ctx.skill.name}-comment:close`,
+				)}`,
 			});
 		}
 		await api.issues.update({
