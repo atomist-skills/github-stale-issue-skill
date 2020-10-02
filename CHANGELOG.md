@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.0...HEAD)
 
+### Added
+
+-   Delete comment when marked unstale. [#16](https://github.com/atomist-skills/github-stale-issue-skill/issues/16)
+
 ## [0.1.0](https://github.com/atomist-skills/github-stale-issue-skill/tree/0.1.0) - 2020-10-01
 
 ### Added
