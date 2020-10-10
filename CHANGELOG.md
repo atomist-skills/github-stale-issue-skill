@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.1...HEAD)
 
+### Fixed
+
+-   Fix status message for comment trigger. [04edb04](https://github.com/atomist-skills/github-stale-issue-skill/commit/04edb04f55f4b7ca0376a859f9b2c06457b86629)
+
 ### Changed
 
 -   Remove single dispatch. [2c86d14](https://github.com/atomist-skills/github-stale-issue-skill/commit/2c86d1440c8a1b3d2f750892cd6839dc2535020b)
--   Fix status message for comment trigger. [04edb04](https://github.com/atomist-skills/github-stale-issue-skill/commit/04edb04f55f4b7ca0376a859f9b2c06457b86629)
 
 ## [0.1.1](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.0...0.1.1) - 2020-10-02
 
