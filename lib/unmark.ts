@@ -36,7 +36,7 @@ export async function unmarkIssue(
 ): Promise<HandlerStatus> {
 	const cfg = {
 		...DefaultIssueConfiguration,
-		...ctx.configuration?.[0]?.parameters,
+		...(ctx.configuration?.parameters || {}),
 	};
 	const unmarkComment = cfg.unmarkComment;
 	const staleLabel = cfg.staleLabel;

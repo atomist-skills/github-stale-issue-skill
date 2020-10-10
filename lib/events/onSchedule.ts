@@ -39,7 +39,7 @@ export const handler: EventHandler<
 > = async ctx => {
 	const cfg = {
 		...DefaultIssueConfiguration,
-		...ctx.configuration?.[0]?.parameters,
+		...(ctx.configuration?.parameters || {}),
 	};
 	// Get all repos in this workspace
 	const repos = await ctx.graphql.query<
@@ -48,13 +48,13 @@ export const handler: EventHandler<
 	>("repositories.graphql");
 	const repositoryState = await state.hydrate<{
 		repositories: Record<string, { processed: number }>;
-	}>(ctx.configuration?.[0]?.name, ctx, { repositories: {} });
+	}>(ctx.configuration?.name, ctx, { repositories: {} });
 
 	const processedRepos = repos.Repo.filter(r =>
 		repository.matchesFilter(
 			r.id,
 			r.org.id,
-			ctx.configuration?.[0]?.name,
+			ctx.configuration?.name,
 			"repos",
 			ctx,
 		),
@@ -83,7 +83,7 @@ export const handler: EventHandler<
 			processed: Date.now(),
 		};
 	}
-	await state.save(repositoryState, ctx.configuration?.[0]?.name, ctx);
+	await state.save(repositoryState, ctx.configuration?.name, ctx);
 
 	return status.success(`Processed state issues and pull requests`);
 };
