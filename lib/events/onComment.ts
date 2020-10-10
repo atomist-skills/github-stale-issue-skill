@@ -33,7 +33,7 @@ export const handler: EventHandler<
 	if (issue.by.login === "atomist[bot]") {
 		return status
 			.success(
-				`Not removing stale label from ${owner}/${repo}#${issue} based on bot activity`,
+				`Not removing stale label from ${owner}/${repo}#${issueNumber} based on bot activity`,
 			)
 			.hidden();
 	}
