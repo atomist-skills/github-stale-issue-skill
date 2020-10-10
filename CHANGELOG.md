@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.1...HEAD)
 
+### Changed
+
+-   Remove single dispatch. [2c86d14](https://github.com/atomist-skills/github-stale-issue-skill/commit/2c86d1440c8a1b3d2f750892cd6839dc2535020b)
+
 ## [0.1.1](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.0...0.1.1) - 2020-10-02
 
 ### Added
