@@ -29,7 +29,7 @@ export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 	namespace: "atomist",
 	displayName: "Auto-Close Stale Issues",
 	author: "Atomist",
-	categories: [Category.ProjectManagement],
+	categories: [Category.RepoManagement],
 	license: "Apache-2.0",
 
 	runtime: {
