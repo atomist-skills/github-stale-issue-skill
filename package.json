@@ -30,7 +30,6 @@
     "compile": "run-s gql:gen compile:ts",
     "compile:ts": "tsc --project .",
     "doc": "typedoc --mode modules --excludeExternals --ignoreCompilerErrors --exclude \"**/*.d.ts\" --out doc index.ts lib",
-    "git:info": "atm-git-info",
     "gql:gen": "atm-skill gql-generate",
     "lint": "eslint --ext .ts .",
     "lint:fix": "npm run lint -- --fix",
@@ -42,8 +41,7 @@
     "skill:register": "atm-skill register",
     "start": "functions-framework --target=sdm --signature-type=event",
     "test": "echo no tests",
-    "test:one": "mocha --require espower-typescript/guess \"test/**/${TEST:-*.test.ts}\"",
-    "typedoc": "npm run doc"
+    "test:one": "mocha --require espower-typescript/guess \"test/**/${TEST:-*.test.ts}\""
   },
   "dependencies": {
     "@atomist/skill": "^0.5.1",
