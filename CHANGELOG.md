@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.2.0...HEAD)
 
+### Changed
+
+-   Use type generation in @atomist/skill. [ab9c423](https://github.com/atomist-skills/github-stale-issue-skill/commit/ab9c423e8c797704e3d4a88e6dddf8e2e1f498a9)
+
 ## [0.2.0](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.2...0.2.0) - 2020-10-16
 
 ### Changed
