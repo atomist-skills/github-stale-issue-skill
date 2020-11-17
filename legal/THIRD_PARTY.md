@@ -1,5 +1,7 @@
 # `@atomist/github-stale-issue-skill`
 
+`@atomist/github-stale-issue-skill` is licensed under Apache License 2.0 - [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
 This page details all runtime dependencies of `@atomist/github-stale-issue-skill`.
 
 ## Licenses
