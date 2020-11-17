@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -   Remove unused chat provider. [8580b9a](https://github.com/atomist-skills/github-stale-issue-skill/commit/8580b9a53d736216dd9d3ca8f7a919962f40d348)
 
+### Fixed
+
+-   Fix test package script. [03832f5](https://github.com/atomist-skills/github-stale-issue-skill/commit/03832f5710e58fe5fb6c1e67757074e0a708c2e9)
+
 ## [0.2.0](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.2...0.2.0) - 2020-10-16
 
 ### Changed
