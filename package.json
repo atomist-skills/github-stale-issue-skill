@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@atomist/skill": "^0.5.1",
+    "@octokit/rest": "^18.0.9",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
