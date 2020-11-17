@@ -28,9 +28,10 @@ import { IssueConfiguration } from "./lib/configuration";
 export const Skill = skill<IssueConfiguration & { repos: any; schedule: any }>({
 	namespace: "atomist",
 	displayName: "Auto-Close Stale Issues",
-	author: "Atomist",
+	description: "Mark and close stale issues and pull requests",
 	categories: [Category.RepoManagement],
-	license: "Apache-2.0",
+	iconUrl:
+		"https://raw.githubusercontent.com/atomist-skills/github-stale-issue-skill/main/docs/images/icon.svg",
 
 	runtime: {
 		memory: 1024,
