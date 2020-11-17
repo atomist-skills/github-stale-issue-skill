@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 -   Use type generation in @atomist/skill. [ab9c423](https://github.com/atomist-skills/github-stale-issue-skill/commit/ab9c423e8c797704e3d4a88e6dddf8e2e1f498a9)
 -   Update skill icon. [2230680](https://github.com/atomist-skills/github-stale-issue-skill/commit/2230680d3bc5cd684a640a8f16ead383b2367b42)
 
+### Removed
+
+-   Remove unused chat provider. [8580b9a](https://github.com/atomist-skills/github-stale-issue-skill/commit/8580b9a53d736216dd9d3ca8f7a919962f40d348)
+
 ## [0.2.0](https://github.com/atomist-skills/github-stale-issue-skill/compare/0.1.2...0.2.0) - 2020-10-16
 
 ### Changed
