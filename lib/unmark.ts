@@ -23,6 +23,7 @@ import {
 	secret,
 	status,
 } from "@atomist/skill";
+
 import { DefaultIssueConfiguration, IssueConfiguration } from "./configuration";
 import { replacePlaceholders } from "./util";
 
