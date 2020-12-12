@@ -23,6 +23,7 @@ import {
 	subscription,
 } from "@atomist/skill";
 import * as _ from "lodash";
+
 import {
 	DefaultIssueConfiguration,
 	IssueConfiguration,

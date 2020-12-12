@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { EventHandler, subscription, status } from "@atomist/skill";
+import { EventHandler, status, subscription } from "@atomist/skill";
+
 import { IssueConfiguration } from "../configuration";
 import { unmarkIssue } from "../unmark";
 

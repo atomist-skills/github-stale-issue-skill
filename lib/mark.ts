@@ -17,12 +17,13 @@
 import {
 	EventContext,
 	github,
+	log,
 	repository,
 	secret,
 	subscription,
-	log,
 } from "@atomist/skill";
 import { Octokit } from "@octokit/rest";
+
 import { IssueConfiguration } from "./configuration";
 import { RepositoriesQuery } from "./typings/types";
 import { replacePlaceholders } from "./util";

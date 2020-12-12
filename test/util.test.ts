@@ -15,6 +15,7 @@
  */
 
 import * as assert from "power-assert";
+
 import { replacePlaceholders } from "../lib/util";
 
 describe("replacePlaceholders", () => {

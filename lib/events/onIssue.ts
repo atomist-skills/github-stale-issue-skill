@@ -15,6 +15,7 @@
  */
 
 import { EventHandler, subscription } from "@atomist/skill";
+
 import { IssueConfiguration } from "../configuration";
 import { unmarkIssue } from "../unmark";
 
