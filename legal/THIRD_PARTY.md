@@ -11,7 +11,7 @@ This page details all runtime dependencies of `@atomist/github-stale-issue-skill
 | License                         | Count |
 | ------------------------------- | ----- |
 | [0BSD](#0bsd)                   | 3     |
-| [Apache-2.0](#apache-20)        | 41    |
+| [Apache-2.0](#apache-20)        | 40    |
 | [BSD-2-Clause](#bsd-2-clause)   | 10    |
 | [BSD-3-Clause](#bsd-3-clause)   | 23    |
 | [CC0-1.0](#cc0-10)              | 3     |
@@ -77,7 +77,6 @@ Apache License 2.0 - [http://www.apache.org/licenses/LICENSE-2.0](http://www.apa
 | `rxjs`                                | `6.6.3`        | Ben Lesh              | [https://github.com/reactivex/rxjs](https://github.com/reactivex/rxjs)                                                           |
 | `teeny-request`                       | `7.0.1`        | fhinkel               | [https://github.com/googleapis/teeny-request](https://github.com/googleapis/teeny-request)                                       |
 | `tslib`                               | `1.10.0`       | Microsoft Corp.       | [https://github.com/Microsoft/tslib](https://github.com/Microsoft/tslib)                                                         |
-| `typescript`                          | `4.1.3`        | Microsoft Corp.       | [https://github.com/Microsoft/TypeScript](https://github.com/Microsoft/TypeScript)                                               |
 | `yaml-ast-parser`                     | `0.0.43`       |                       | [https://github.com/mulesoft-labs/yaml-ast-parser](https://github.com/mulesoft-labs/yaml-ast-parser)                             |
 
 #### BSD-2-Clause
@@ -338,7 +337,7 @@ MIT License - [https://opensource.org/licenses/MIT](https://opensource.org/licen
 | `@types/lodash.merge`                                | `4.6.6`         |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
 | `@types/lodash.set`                                  | `4.3.6`         |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
 | `@types/lodash.uniq`                                 | `4.5.6`         |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
-| `@types/lodash`                                      | `4.14.167`      |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
+| `@types/lodash`                                      | `4.14.168`      |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
 | `@types/long`                                        | `4.0.1`         |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
 | `@types/node-fetch`                                  | `2.5.8`         |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
 | `@types/node`                                        | `12.19.13`      |                                | [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)                                                                                             |
