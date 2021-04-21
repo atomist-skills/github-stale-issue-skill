@@ -98,12 +98,10 @@ async function markIssues(
 	).data.items.filter(i => i.state !== "closed" && !(i as any).locked);
 	log.debug(`Running GitHub issue query: ${query}`);
 	if (issues.length === 0) {
-		await ctx.audit.log(`No stale issues in ${owner}/${name}`);
+		log.info(`No stale issues in ${owner}/${name}`);
 	}
 	for (const issue of issues) {
-		await ctx.audit.log(
-			`Marking issue ${owner}/${name}#${issue.number} as stale`,
-		);
+		log.info(`Marking issue ${owner}/${name}#${issue.number} as stale`);
 		if (markComment) {
 			await api.issues.createComment({
 				owner,
@@ -169,12 +167,10 @@ async function closeIssues(
 	).data.items.filter(i => i.state !== "closed" && !(i as any).locked);
 	log.debug(`Running GitHub issue query: ${query}`);
 	if (issues.length === 0) {
-		await ctx.audit.log(`No issues to close in ${owner}/${name}`);
+		log.info(`No issues to close in ${owner}/${name}`);
 	}
 	for (const issue of issues) {
-		await ctx.audit.log(
-			`Closing stale issue ${owner}/${name}#${issue.number}`,
-		);
+		log.info(`Closing stale issue ${owner}/${name}#${issue.number}`);
 		if (closeComment) {
 			await api.issues.createComment({
 				owner,

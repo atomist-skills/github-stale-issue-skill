@@ -52,7 +52,7 @@ export const handler: EventHandler<
 	}>(ctx.configuration?.name, ctx, { repositories: {} });
 
 	const processedRepos = repos.Repo.filter(r =>
-		repository.matchesFilter(
+		repository.matchesRepoFilter(
 			r.id,
 			r.org.id,
 			ctx.configuration?.name,
