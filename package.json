@@ -50,13 +50,13 @@
   },
   "dependencies": {
     "@atomist/skill": "^0.11.0",
-    "@octokit/rest": "^18.11.1",
+    "@octokit/rest": "^18.11.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@atomist/npm-tools": "^0.1.1-main.0",
     "@google-cloud/functions-framework": "^1.10.0",
-    "@types/lodash": "^4.14.174",
+    "@types/lodash": "^4.14.175",
     "@types/mocha": "^8.2.3",
     "@types/power-assert": "^1.5.4",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
